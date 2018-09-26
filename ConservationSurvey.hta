@@ -1,0 +1,186 @@
+<html>
+<title>Conservation Survey Generator</title>
+<head>
+<HTA:APPLICATION 
+     APPLICATIONNAME="Conservation Survey Generator"
+     SCROLL="yes"
+     SINGLEINSTANCE="yes"
+     WINDOWSTATE="maximize"
+     ICON="Winver.exe"
+/>
+</head>
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="YES">
+<script language="VBScript">
+Option Explicit
+Dim Title : Title = "Conservation Survey Generator"
+'**********************************************************************************************
+Sub Window_OnLoad
+	MsgBox "Welcome to the Newfields Conservation Survey Generator!"& vbCrLf & vbCrLf &"Instructions:"& vbCrLf & vbCrLf &"- To generate a Conservation Survey for a specific Clowes object, select the Clowes Number (or accession number) from the drop-down list and click the 'Generate Survey(s)' button."& vbCrLf & vbCrLf &" - To generate all Clowes Conservation Surveys at once, select 'ALL' in the drop-down menu and click the 'Generate Survey(s)' button. This will result in all the Clowes Conservation Surveys presented in a single file, with page breaks between reports."& vbCrLf & vbCrLf &"- If there are no errors, the resulting report should open in your browser of choice. From there, you can print to PDF and save in your location of choice."& vbCrLf & vbCrLf & vbCrLf &"Reporting errors:"& vbCrLf & vbCrLf &"If the resulting report does not look correct, you receive an error message, or if your browser fails to automatically open the report, follow the instructions in the 'Processing Report' section to report the issue to the Newfields Lab.",,"Welcome and Instructions"
+End Sub
+'********************************************************************************************** 
+Sub instructions_onclick 
+	MsgBox "Instructions:"& vbCrLf & vbCrLf &"- To generate a Conservation Survey for a specific Clowes object, select the Clowes Number (or accession number) from the drop-down list and click the 'Generate Survey(s)' button."& vbCrLf & vbCrLf &" - To generate all Clowes Conservation Surveys at once, select 'ALL' in the drop-down menu and click the 'Generate Survey(s)' button. This will result in all the Clowes Conservation Surveys presented in a single file, with page breaks between reports."& vbCrLf & vbCrLf &"- If there are no errors, the resulting report should open in your browser of choice. From there, you can print to PDF and save in your location of choice."& vbCrLf & vbCrLf & vbCrLf &"Reporting errors:"& vbCrLf & vbCrLf &"If the resulting report does not look correct, you receive an error message, or if your browser fails to automatically open the report, follow the instructions in the 'Processing Report' section to report the issue to the Newfields Lab.",,"Instructions"
+End Sub 
+'**********************************************************************************************
+Sub Run_Cmd(strCommand)
+On Error Resume Next
+    Output.value = ""
+    btnClick.disabled = True
+    document.body.style.cursor = "wait"
+    btnClick.style.cursor = "wait"
+    Const ForReading = 1
+    Const TristateTrue = -1
+    Const TemporaryFolder = 2
+    Const WshHide = 0
+    Dim wsh, fs, ts
+    Dim strTempFile,strFile, strData
+    Set wsh = CreateObject("Wscript.Shell")
+    Set fs = CreateObject("Scripting.FileSystemObject")
+    strTempFile = fs.BuildPath(fs.GetSpecialFolder(TemporaryFolder).Path, fs.GetTempName)
+    strFile = fs.BuildPath(fs.GetSpecialFolder(TemporaryFolder).Path, "result.txt")
+    wsh.Run "cmd.exe /c " & strCommand & " > " & DblQuote(strTempFile) & "2>&1", WshHide, True
+    wsh.Run "cmd.exe /u /c Type " & DblQuote(strTempFile) & " > " & DblQuote(strFile) & "", WshHide, True
+    Set ts = fs.OpenTextFile(strFile,ForReading,True,TristateTrue)
+    strData = ts.ReadAll
+    Output.Value = "Microsoft Windows [version 7.1 7631]" & vbcrlf &_
+    "Copyright (c) 2009 Microsoft Corporation. All rights reserved." & vbcrlf & vbcrlf &_
+    "C:\>"& strCommand & vbcrlf & strData
+    ts.Close
+    fs.DeleteFile strTempFile
+    fs.DeleteFile strFile
+    document.body.style.cursor = "default"
+    btnClick.style.cursor = "default"
+    btnClick.disabled = False   
+End Sub
+'**********************************************************************************************
+Function DblQuote(Str)
+    DblQuote = Chr(34) & Str & Chr(34)
+End Function
+'**********************************************************************************************
+Sub OnClickButtonCopy()
+    document.parentwindow.clipboardData.SetData "text", Output.Value
+    MsgBox "The Processing Report has been copied to the clipboard.",vbInformation,Title
+End Sub
+'**********************************************************************************************
+</script>
+</head>
+<body bgcolor="silver" text=black>
+<input type = 'button' Name='instructions'  value='Instructions'><BR>
+<center><FONT SIZE="5"><B>Conservation Survey Generator</B></FONT><hr><hr>
+<select style="background-color:white" name="AccDropDown">
+<option value="set AccNo=C10001& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10001</option>
+<option value="set AccNo=C10002& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10002</option>
+<option value="set AccNo=C10003& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10003</option>
+<option value="set AccNo=C10004& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10004</option>
+<option value="set AccNo=C10005& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10005</option>
+<option value="set AccNo=C10006& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10006</option>
+<option value="set AccNo=C10007& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10007</option>
+<option value="set AccNo=C10008& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10008</option>
+<option value="set AccNo=C10009& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10009</option>
+<option value="set AccNo=C10010& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10010</option>
+<option value="set AccNo=C10011& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10011</option>
+<option value="set AccNo=C10012& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10012</option>
+<option value="set AccNo=C10013& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10013</option>
+<option value="set AccNo=C10014& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10014</option>
+<option value="set AccNo=C10015& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10015</option>
+<option value="set AccNo=C10016& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10016</option>
+<option value="set AccNo=C10017& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10017</option>
+<option value="set AccNo=C10018& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10018</option>
+<option value="set AccNo=C10019& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10019</option>
+<option value="set AccNo=C10020& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10020</option>
+<option value="set AccNo=C10021& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10021</option>
+<option value="set AccNo=C10022& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10022</option>
+<option value="set AccNo=C10023& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10023</option>
+<option value="set AccNo=C10024& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10024</option>
+<option value="set AccNo=C10025& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10025</option>
+<option value="set AccNo=C10026& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10026</option>
+<option value="set AccNo=C10027& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10027</option>
+<option value="set AccNo=C10028& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10028</option>
+<option value="set AccNo=C10029& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10029</option>
+<option value="set AccNo=C10030& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10030</option>
+<option value="set AccNo=C10031& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10031</option>
+<option value="set AccNo=C10032& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10032</option>
+<option value="set AccNo=C10033& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10033</option>
+<option value="set AccNo=C10034& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10034</option>
+<option value="set AccNo=C10035& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10035</option>
+<option value="set AccNo=C10036& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10036</option>
+<option value="set AccNo=C10037& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10037</option>
+<option value="set AccNo=C10038& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10038</option>
+<option value="set AccNo=C10039& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10039</option>
+<option value="set AccNo=C10040& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10040</option>
+<option value="set AccNo=C10041& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10041</option>
+<option value="set AccNo=C10042& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10042</option>
+<option value="set AccNo=C10043& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10043</option>
+<option value="set AccNo=C10044& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10044</option>
+<option value="set AccNo=C10045& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10045</option>
+<option value="set AccNo=C10046A-B& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10046A-B</option>
+<option value="set AccNo=C10047& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10047</option>
+<option value="set AccNo=C10048& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10048</option>
+<option value="set AccNo=C10049& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10049</option>
+<option value="set AccNo=C10050& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10050</option>
+<option value="set AccNo=C10051& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10051</option>
+<option value="set AccNo=C10052& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10052</option>
+<option value="set AccNo=C10053& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10053</option>
+<option value="set AccNo=C10054& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10054</option>
+<option value="set AccNo=C10055& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10055</option>
+<option value="set AccNo=C10056& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10056</option>
+<option value="set AccNo=C10057& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10057</option>
+<option value="set AccNo=C10058& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10058</option>
+<option value="set AccNo=C10059& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10059</option>
+<option value="set AccNo=C10060& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10060</option>
+<option value="set AccNo=C10061& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10061</option>
+<option value="set AccNo=C10062& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10062</option>
+<option value="set AccNo=C10063& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10063</option>
+<option value="set AccNo=C10064& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10064</option>
+<option value="set AccNo=C10065& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10065</option>
+<option value="set AccNo=C10066& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10066</option>
+<option value="set AccNo=C10067& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10067</option>
+<option value="set AccNo=C10068& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10068</option>
+<option value="set AccNo=C10069& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10069</option>
+<option value="set AccNo=C10070& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10070</option>
+<option value="set AccNo=C10071& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10071</option>
+<option value="set AccNo=C10072& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10072</option>
+<option value="set AccNo=C10073& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10073</option>
+<option value="set AccNo=C10074& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10074</option>
+<option value="set AccNo=C10075& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10075</option>
+<option value="set AccNo=C10076& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10076</option>
+<option value="set AccNo=C10077& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10077</option>
+<option value="set AccNo=C10078A& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10078A</option>
+<option value="set AccNo=C10078B& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10078B</option>
+<option value="set AccNo=C10079& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10079</option>
+<option value="set AccNo=C10080& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10080</option>
+<option value="set AccNo=C10081& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10081</option>
+<option value="set AccNo=C10082& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10082</option>
+<option value="set AccNo=C10083& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10083</option>
+<option value="set AccNo=C10084& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10084</option>
+<option value="set AccNo=C10085& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10085</option>
+<option value="set AccNo=C10086& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10086</option>
+<option value="set AccNo=C10087& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10087</option>
+<option value="set AccNo=C10088& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10088</option>
+<option value="set AccNo=C10089& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10089</option>
+<option value="set AccNo=C10090A-B& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10090A-B</option>
+<option value="set AccNo=C10093& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10093</option>
+<option value="set AccNo=C10094& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10094</option>
+<option value="set AccNo=C10095& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10095</option>
+<option value="set AccNo=C10096& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10096</option>
+<option value="set AccNo=C10097& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10097</option>
+<option value="set AccNo=C10098& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10098</option>
+<option value="set AccNo=C10099A-J& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10099A-J</option>
+<option value="set AccNo=C10100A-B& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">C10100A-B</option>
+<option value="set AccNo=2016.372& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">2016.372</option>
+<option value="set AccNo=TR10965-1& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">TR10965/1</option>
+<option value="set AccNo=TR10965-2& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">TR10965/2</option>
+<option value="set AccNo=TR10965-3& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">TR10965/3</option>
+<option value="set AccNo=TR10965-4& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">TR10965/4</option>
+<option value="set AccNo=TR10965-5& C:\conservation-survey-generator\CMD\SingleSurvey.cmd">TR10965/5</option>
+<option value="C:\conservation-survey-generator\CMD\AllSurveys.cmd">ALL</option>
+</select>
+<input type="button" onClick="Run_Cmd(AccDropDown.value)" value="Generate Survey(s)">
+<br><hr><hr><B> Processing Report </B><br><br>
+<FONT SIZE="3">In case of error, copy Processing Report output to Clipboard and send it in an <a href="mailto:newfieldslab@discovernewfields.org?subject=Conservation Survey Report error"> e-mail to the Newfields Lab</a>.</FONT><br><br>
+<input type="button" name="ButtonCopy" value="Click to copy Processing Report to Clipboard" onclick="OnClickButtonCopy"><hr>
+<textarea readonly id="Output" style="width:100%" rows="25" style="background-color:black; color:lightblue">Microsoft Windows [version 7.1 7631]
+Copyright (c) 2009 Microsoft Corporation. All rights reserved.
+C:\></textarea>
+</body>
+</html
