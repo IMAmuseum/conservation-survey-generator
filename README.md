@@ -20,7 +20,7 @@ The Conservation Survey Generator has been designed to run on a Windows machine 
 From the terminal:
 
 	cd C:\
-	git clone https://github.com/IMAmuseum/conservation-survey-generator.git .
+	git clone https://github.com/IMAmuseum/conservation-survey-generator.git .\conservation-survey-generator
 
 ## Settings
 
