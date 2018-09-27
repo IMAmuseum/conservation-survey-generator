@@ -24,7 +24,7 @@ From the terminal:
 
 ## Settings
 
-The Conservation Survey Generator requires a setting file, settings.cmd, in the main application directory. This file is called while running the application to set the Piction username and password for retrieving data and image assets. This file should contain:
+The Conservation Survey Generator requires a settings file, settings.cmd, in the main application directory. This file is called while running the application to set the Piction username and password for retrieving data and image assets. This file should contain:
 
 	set username=[USERNAME]
 	set password=[PASSWORD]
