@@ -4,7 +4,7 @@ This repository contains a simple HTML application used for generating Clowes Co
 
 ## Dependencies
 
-The Conservation Survey Generator requires the the Java Runtime Environment (https://www.oracle.com/technetwork/java/javase/downloads/index.html), curl (https://curl.haxx.se/), and SAXON XSLT Processor (http://saxon.sourceforge.net/) be installed on the Windows machine and accessible from the command line. Follow the installation instructions at the above links. Be sure to set the JAVA_HOME environment variable to the installed version of JRE.
+The Conservation Survey Generator requires the Java Runtime Environment (https://www.oracle.com/technetwork/java/javase/downloads/index.html), curl (https://curl.haxx.se/), and SAXON XSLT Processor (http://saxon.sourceforge.net/) be installed on the Windows machine and accessible from the command line. Follow the installation instructions at the above links. Be sure to set the JAVA_HOME environment variable to the installed version of JRE.
 
 To test installation of these application from a terminal window, confirm that the curl and Saxon applications' help lists can be retrieved:
 
