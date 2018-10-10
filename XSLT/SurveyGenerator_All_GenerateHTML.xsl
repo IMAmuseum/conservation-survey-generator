@@ -52,8 +52,9 @@
             }
             
             .ima-collection-survey-report .header .logo img{
-            width: 180px;
-            height: 133px;
+            width: 150px;
+            height: auto;
+			margin-bottom: 10px;
             }
             
             .ima-collection-survey-report .header .address{
