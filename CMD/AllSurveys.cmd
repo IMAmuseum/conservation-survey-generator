@@ -22,8 +22,8 @@ call CMD\PictionCall.cmd
 REM cURL GET call to Piction API to retrieve AccNo survey data, output as XML\CON_Surveys_All.xml
 curl --insecure %PictionCall% -o "XML\CON_Surveys_All.xml"
 
-REM call saxon to run XSLT\SurveyGenerator_Single_GenerateHTML.xsl on XML\CON_Survey_All.xml to output as HTML\CON_Survey_All.html
+REM call saxon to run XSLT\SurveyGenerator_All_GenerateHTML.xsl on XML\CON_Surveys_All.xml to output as HTML\CON_Surveys_All.html
 java -jar C:\saxon\saxon9he.jar -s:XML\CON_Surveys_All.xml -xsl:XSLT\SurveyGenerator_All_GenerateHTML.xsl -o:HTML\CON_Surveys_All.html
 
-REM open CON_Survey_All.html in browser
+REM open CON_Surveys_All.html in browser
 start C:\conservation-survey-generator\HTML\CON_Surveys_ALL.html

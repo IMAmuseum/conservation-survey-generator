@@ -55,8 +55,9 @@
             }
             
             .ima-collection-survey-report .header .logo img{
-            width: 180px;
-            height: 133px;
+            width: 150px;
+            height: auto;
+            margin-bottom: 10px;
             }
             
             .ima-collection-survey-report .header .address{
@@ -257,7 +258,7 @@
                         <xsl:when test="m/mv[@c='CONDITIONS'] = 'Good'">
                             <strong>Storage/Display Conditions</strong><span class="condition condition-good">Good</span>
                         </xsl:when>
-                        <xsl:when test="m/mv[@c='CONDITIONS'] = 'Good'">
+                        <xsl:when test="m/mv[@c='CONDITIONS'] = 'Fair'">
                             <strong>Storage/Display Conditions</strong><span class="condition condition-fair">Fair</span>
                         </xsl:when>
                         <xsl:otherwise>
