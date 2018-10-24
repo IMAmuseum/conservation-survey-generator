@@ -1,3 +1,3 @@
-set PictionCall=https://digitalmedia.imamuseum.org/r/st/IQ/SURL/1362091293ZZLPANYEKMVS/SEARCH/META:\"CNUMBER,%AccNo%\"/ALL_METADATA/TRUE/LIMIT/PHOTO
+set PictionCall=https://digitalmedia.imamuseum.org/r/st/IQ/SURL/1193725853ZZJREOCXKNMX/SEARCH/IN_CATEGORY:\"62158927\"/ALL_METADATA/TRUE/LIMIT/PHOTO/MAXROWS/200 
 
-set Date=2018-9-25
+set Date=2018-10-24
