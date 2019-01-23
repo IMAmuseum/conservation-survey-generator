@@ -1,19 +1,16 @@
 Structural Priority
 None: 75
-High: 3
-Low: 19
-: 2
+Low: 20
 Medium: 7
+High: 3
 
 Aesthetic Priority
 None: 30
-Low: 46
+Low: 48
 Medium: 25
-High: 3
-: 2
+High: 2
 
 Storage/Display Conditions
-Good: 97
-: 2
-Fair: 6
+Good: 99
+Fair: 5
 Poor: 1

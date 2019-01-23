@@ -224,7 +224,7 @@
                 <p class="collection_survey_priority structural_priority">
                     <xsl:choose>
                         <xsl:when test="m/mv[@c='STRUCTURAL PRIORITY'] = 'None'">
-                    <strong>Structural Priority</strong><span class="priority priority-none">None</span>
+                            <strong>Structural Priority</strong><span class="priority priority-none">None</span>
                         </xsl:when>
                         <xsl:when test="m/mv[@c='STRUCTURAL PRIORITY'] = 'Low'">
                             <strong>Structural Priority</strong><span class="priority priority-low">Low</span>
@@ -232,8 +232,11 @@
                         <xsl:when test="m/mv[@c='STRUCTURAL PRIORITY'] = 'Medium'">
                             <strong>Structural Priority</strong><span class="priority priority-medium">Medium</span>
                         </xsl:when>
-                        <xsl:otherwise>
+                        <xsl:when test="m/mv[@c='STRUCTURAL PRIORITY'] = 'High'">
                             <strong>Structural Priority</strong><span class="priority priority-high">High</span>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <strong>Structural Priority</strong><span style="color: red;">MISSING</span>
                         </xsl:otherwise>
                     </xsl:choose>
                 </p>
@@ -248,8 +251,11 @@
                         <xsl:when test="m/mv[@c='AESTHETIC PRIORITY'] = 'Medium'">
                             <strong>Aesthetic Priority</strong><span class="priority priority-medium">Medium</span>
                         </xsl:when>
-                        <xsl:otherwise>
+                        <xsl:when test="m/mv[@c='AESTHETIC PRIORITY'] = 'High'">
                             <strong>Aesthetic Priority</strong><span class="priority priority-high">High</span>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <strong>Aesthetic Priority</strong><span style="color: red;">MISSING</span>
                         </xsl:otherwise>
                     </xsl:choose>
                 </p>
@@ -261,16 +267,24 @@
                         <xsl:when test="m/mv[@c='CONDITIONS'] = 'Fair'">
                             <strong>Storage/Display Conditions</strong><span class="condition condition-fair">Fair</span>
                         </xsl:when>
-                        <xsl:otherwise>
+                        <xsl:when test="m/mv[@c='CONDITIONS'] = 'Poor'">
                             <strong>Storage/Display Conditions</strong><span class="condition condition-poor">Poor</span>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <strong>Storage/Display Conditions</strong><span style="color: red;">MISSING</span>
                         </xsl:otherwise>
                     </xsl:choose>
                     <xsl:value-of disable-output-escaping="yes">&lt;br/&gt;</xsl:value-of>
                 </p>
-                <xsl:if test="m/mv[@c='DESCRIPTION'][@c='SURVEY'] != ''">
+                <xsl:if test="m/mv[@c='DESCRIPTION'][@i='SURVEY'] != ''">
                 <p class="condition_description">
                     <PRE><strong>Description</strong><xsl:value-of select="m/mv[@c='DESCRIPTION'][@i='SURVEY']"/></PRE>
                 </p>
+                </xsl:if>
+                <xsl:if test="m/mv[@c='MOUNTS'] != ''">
+                    <p class="mounts">
+                        <PRE><strong>Storage or Display Mount/Frame</strong><xsl:value-of select="m/mv[@c='MOUNTS']"/></PRE>
+                    </p>
                 </xsl:if>
                 <xsl:if test="m/mv[@c='GENERAL CONDITION'] != ''">
                 <p class="condition_general">
@@ -345,11 +359,6 @@
                 <xsl:if test="m/mv[@c='TRAVEL RECS'] != ''">
                     <p class="travel_recommendations">
                         <PRE><strong>Travel Recommendations</strong><xsl:value-of select="m/mv[@c='TRAVEL RECS']"/></PRE>
-                    </p>
-                </xsl:if>
-                <xsl:if test="m/mv[@c='LOAN ELIGIBILITY'] != ''">
-                    <p class="loan_eligibility">
-                        <PRE><strong>Loan Eligibility</strong><xsl:value-of select="m/mv[@c='LOAN ELIGIBILITY']"/></PRE>
                     </p>
                 </xsl:if>
                 <xsl:if test="m/mv[@c='OPTIMAL STORAGE'] != ''">
