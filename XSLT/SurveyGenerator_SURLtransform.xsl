@@ -6,7 +6,7 @@
     
     <xsl:output method="text"/>
     
-    <xsl:template match="a">set PictionCall=https://digitalmedia.imamuseum.org/r/st/IQ/SURL/<xsl:value-of select="SURL"/>/SEARCH/META:\"CNUMBER,%AccNo%\"/ALL_METADATA/TRUE/LIMIT/PHOTO
+    <xsl:template match="a">set PictionCall=https://digitalmedia.imamuseum.org/r/st/IQ/SURL/<xsl:value-of select="SURL"/>/SEARCH/META:\"SURVEY.CNUMBER,%AccNo%\"/ALL_METADATA/TRUE/LIMIT/PHOTO
 
 set Date=<xsl:value-of select="format-dateTime(current-dateTime(),'[Y]-[M]-[D]')"/>
     </xsl:template>
